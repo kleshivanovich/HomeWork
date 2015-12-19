@@ -1,0 +1,54 @@
+﻿<Window x:Class="HomeWorkFinal.MainWindow"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:HelixToolkit="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+        Title="3D Cube Editor" Height="538.471" Width="760.178">
+    <Grid Background="Gray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="93*"></RowDefinition>
+            <RowDefinition Height="415*"/>
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="172*"></ColumnDefinition>
+            <ColumnDefinition Width="501*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <HelixToolkit:HelixViewport3D x:Name="myView" ZoomExtentsWhenLoaded="True" Margin="0.2,-2,-0.4,1.8" Grid.RowSpan="2" Background="White" Grid.Column="1" MouseDoubleClick="MyView_OnMouseDoubleClick">
+            <HelixToolkit:SunLight/>
+            <ModelVisual3D x:Name="model"/>
+            <!-- You can also add elements here in the xaml -->
+            <HelixToolkit:GridLinesVisual3D x:Name="Lines"  Width="8" Length="8" MinorDistance="1" MajorDistance="1" Thickness="0.01"/>
+        </HelixToolkit:HelixViewport3D>
+        <TextBox Name="Tx"  HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" Margin="29,26,0,0" TextChanged="Tx_OnTextChanged"/>
+        <TextBox Name="Ty" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" Margin="29,55,0,0"/>
+        <TextBox Name="Tz" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88" Margin="29,86,0,0" Grid.RowSpan="2"/>
+        <Label Content="X" HorizontalAlignment="Left" Height="28" Margin="3,23,0,0" VerticalAlignment="Top" Width="21"/>
+        <Label Content="Y" HorizontalAlignment="Left" Height="28" Margin="3,55,0,0" VerticalAlignment="Top" Width="21"/>
+        <Label Content="Z" HorizontalAlignment="Left" Height="23" Margin="3,85,0,0" VerticalAlignment="Top" Width="21" Grid.RowSpan="2"/>
+        <Button Content="Выбрать цвет" HorizontalAlignment="Left" Height="25" Margin="10,105.2,0,0" VerticalAlignment="Top" Width="88" Grid.Row="1" Click="ChooseColor"/>
+        <Button Name="CrBut" Content="Создать" HorizontalAlignment="Left" Height="25" Margin="11,43.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="116" Click="CreateClick"/>
+        <Label  Content="Color:" HorizontalAlignment="Left" Height="27" Margin="10,135.2,0,0" VerticalAlignment="Top" Width="40" RenderTransformOrigin="1.7,0.537" Grid.Row="1"/>
+        <Button Name="DelBut" Content="Удалить" HorizontalAlignment="Left" Height="25" Margin="11,73.2,0,0" VerticalAlignment="Top" Width="117" Grid.Row="1" Click="DelBut_Click"/>
+        <Label Content="Размер сетки:" HorizontalAlignment="Left" Height="25" Margin="2,206.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="90"/>
+        <TextBox Name="SizeBox" HorizontalAlignment="Left" Height="25" Margin="82,211.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="8" VerticalAlignment="Top" Width="35"/>
+        <Label Content="Размер куба:" HorizontalAlignment="Left" Height="25" Margin="2,247.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="90"/>
+        <TextBox x:Name="SizeCube" HorizontalAlignment="Left" Height="25" Margin="82,249.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="1" VerticalAlignment="Top" Width="35" />
+        <Rectangle Name="ColRec" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="27" Margin="70,135.2,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="27"/>
+        <Button  Content="Применить" HorizontalAlignment="Left" Height="66" Margin="120,209.2,0,0" VerticalAlignment="Top" Width="68" Grid.Row="1" RenderTransformOrigin="1.362,0.636" Click="ChangeSizeClick"/>
+        <Button Name="Txp" Content="+" Height="23" Margin="122,26,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="24" Click="X_plus_clicked"/>
+        <Button Name="Txm" Content="-" HorizontalAlignment="Left" Height="23" Margin="146,26,0,0" VerticalAlignment="Top" Width="24" Click="X_minus_clicked"/>
+        <Button Name="Typ" Content="+" HorizontalAlignment="Left" Height="23" Margin="122,55,0,0" VerticalAlignment="Top" Width="24" Click="Y_plus_clicked"/>
+        <Button Name="Tym" Content="-" HorizontalAlignment="Left" Height="23" Margin="146,55,0,0" VerticalAlignment="Top" Width="24" Click="Y_minus_clicked"/>
+        <Button Name="Tzp" Content="+" HorizontalAlignment="Left" Height="23" Margin="122,85,0,0" VerticalAlignment="Top" Width="24" Grid.RowSpan="2" Click="Z_plus_clicked"/>
+        <Button Name="Tzm" Content="-" HorizontalAlignment="Left" Height="23" Margin="146,85,0,0" VerticalAlignment="Top" Width="24" Grid.RowSpan="2" Click="Z_minus_clicked"/>
+        <Button Content="Текстура:" HorizontalAlignment="Left" Height="28" Margin="10,163.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="55" Click="Solid_Click"/>
+        <TextBox Name="PathToSolid" HorizontalAlignment="Left" Height="28" Margin="68,164.2,0,0" Grid.Row="1" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="65"/>
+        <Rectangle Name="SolRec" Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="28" Margin="140,163.2,0,0" Grid.Row="1" Stroke="Black" VerticalAlignment="Top" Width="43" RenderTransformOrigin="0.095,-4.204"/>
+        <Button Content="Сетка" HorizontalAlignment="Left" Height="25" Margin="109,105.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="68" Click="Enable_lines_Click"/>
+        <Button Content="Сохранить" HorizontalAlignment="Left" Height="20" Margin="82,291.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="88" Click="Save_Click" RenderTransformOrigin="0.494,-0.244"/>
+        <Button Content="Открыть" HorizontalAlignment="Left" Height="21" Margin="11,290.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="66" Click="Open_Click"/>
+        <RadioButton Content="Вращение" HorizontalAlignment="Left" Height="17" Margin="11,335.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="81" IsChecked="True" Checked="ToggleButton_OnChecked"/>
+        <RadioButton Content="Полет" HorizontalAlignment="Left" Height="17" Margin="11,357.2,0,0" Grid.Row="1" VerticalAlignment="Top" Width="81" Checked="ToggleButton_OnChecked1"/>
+    </Grid>
+</Window>
+
